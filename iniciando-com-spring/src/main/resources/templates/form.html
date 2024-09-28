@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <h1>Cadastro de diaristas</h1>
+  
+  <form method="POST" th:object="${form}">
+    <label for="">Nome</label>
+    <input type="text" th:field="*{nome}">
+    <br>
+
+    <label for="">Telefone</label>
+    <input type="text" th:field="*{telefone}">
+    <br>
+
+    <label for="">CPF</label>
+    <input type="text" th:field="*{cpf}">
+    <br>
+
+    <button type="submit">salvar</button>
+  </form>
+</body>
+</html>

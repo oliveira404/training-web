@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conhecendo o spring com diaristas</title>
+</head>
+<body>
+  <h1>Listagem de diaristas</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>telefone</th>
+        <th>Endereço</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr th:each="diarista : ${diaristas}">
+        <td th:text="${diarista.id}"></td>
+        <td th:text="${diarista.nome}"></td>
+        <td th:text="${diarista.telefone}"></td>
+        <td th:text="${diarista.endereco}"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

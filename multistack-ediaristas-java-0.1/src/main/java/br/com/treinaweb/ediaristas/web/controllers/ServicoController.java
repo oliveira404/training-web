@@ -1,9 +1,9 @@
 package br.com.treinaweb.ediaristas.web.controllers;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import br.com.treinaweb.ediaristas.core.enums.Icone;
-import br.com.treinaweb.ediaristas.core.models.Servico;
 import br.com.treinaweb.ediaristas.core.repositories.ServicoRepository;
 import br.com.treinaweb.ediaristas.web.dtos.ServicoForm;
 import br.com.treinaweb.ediaristas.web.mappers.WebServiceMapper;
@@ -42,7 +41,10 @@ public class ServicoController {
     }
 
     @PostMapping("/cadastrar")
-    public String cadastrar(@Valid ServicoForm form) {
+    public String cadastrar(@Valid @ModelAttribute("form") ServicoForm form, BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/servico/form";
+        }
         var servico = mapper.toModel(form);
         repository.save(servico);
         return "redirect:/admin/servicos";
@@ -60,7 +62,8 @@ public class ServicoController {
     }
 
     @PostMapping("/{id}/editar")
-    public String editar(@PathVariable Long id, @Valid ServicoForm form) {
+    public String editar(@PathVariable Long id, @Valid @ModelAttribute("form") ServicoForm form, BindingResult result) {
+        if (result.hasErrors()) return "admin/servico/form";
         var servico = mapper.toModel(form);
         servico.setId(id);
         repository.save(servico);

@@ -1,6 +1,5 @@
 package br.com.treinaweb.ediaristas.web.controllers;
 
-import org.checkerframework.checker.units.qual.s;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +17,17 @@ public class ServicoController {
 
     @Autowired
     private ServicoRepository repository;
-    
+
+    @GetMapping
+    public ModelAndView buscarTodos() {
+        var modelAndView = new ModelAndView("admin/servico/lista");
+        modelAndView.addObject("servicos", repository.findAll());
+        return modelAndView;
+    }
+
     @GetMapping("/cadastrar")
     public ModelAndView cadastrar() {
-        var modelAndView = new ModelAndView("/admin/servico/form");
+        var modelAndView = new ModelAndView("admin/servico/form");
         modelAndView.addObject("servico", new Servico());
         //modelAndView.addObject("icones", Icone.values());
         return modelAndView;
@@ -30,7 +36,7 @@ public class ServicoController {
     @PostMapping("/cadastrar")
     public String cadastrar(Servico servico) {
         repository.save(servico);
-        return "redirect:/admin/servicos/cadastrar";
+        return "redirect:/admin/servicos";
     }
 
     @ModelAttribute("icones")

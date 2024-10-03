@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 import br.com.treinaweb.ediaristas.core.enums.Icone;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +24,7 @@ public class ServicoForm {
 
     @NotNull
     @PositiveOrZero
+    @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     private BigDecimal valorMinimo;
 
     @NotNull
@@ -31,6 +34,7 @@ public class ServicoForm {
     @NotNull
     @Max(100)
     @PositiveOrZero
+    @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     private BigDecimal porcentagemComissao;
 
     @NotNull
@@ -39,6 +43,7 @@ public class ServicoForm {
 
     @NotNull
     @PositiveOrZero
+    @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     private BigDecimal valorQuarto;
 
     @NotNull
@@ -47,6 +52,7 @@ public class ServicoForm {
 
     @NotNull
     @PositiveOrZero
+    @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     private BigDecimal valorSala;
 
     @NotNull
@@ -55,6 +61,7 @@ public class ServicoForm {
 
     @NotNull
     @PositiveOrZero
+    @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     private BigDecimal valorBanheiro;
 
     @NotNull
@@ -63,6 +70,7 @@ public class ServicoForm {
 
     @NotNull
     @PositiveOrZero
+    @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     private BigDecimal valorCozinha;
 
     @NotNull
@@ -71,6 +79,7 @@ public class ServicoForm {
 
     @NotNull
     @PositiveOrZero
+    @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     private BigDecimal valorQuintal;
 
     @NotNull
@@ -79,6 +88,7 @@ public class ServicoForm {
 
     @NotNull
     @PositiveOrZero
+    @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     private BigDecimal valorOutros;
 
     @NotNull

@@ -11,24 +11,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import br.com.treinaweb.ediaristas.core.enums.Icone;
-import br.com.treinaweb.ediaristas.core.repositories.ServicoRepository;
 import br.com.treinaweb.ediaristas.web.dtos.ServicoForm;
-import br.com.treinaweb.ediaristas.web.mappers.WebServiceMapper;
+import br.com.treinaweb.ediaristas.web.services.WebServicoService;
 
 @Controller
 @RequestMapping(value = "/admin/servicos")
 public class ServicoController {
 
     @Autowired
-    private ServicoRepository repository;
-
-    @Autowired
-    private WebServiceMapper mapper;
+    private WebServicoService service;
 
     @GetMapping
     public ModelAndView buscarTodos() {
         var modelAndView = new ModelAndView("admin/servico/lista");
-        modelAndView.addObject("servicos", repository.findAll());
+        modelAndView.addObject("servicos", service.buscarTodos());
         return modelAndView;
     }
 
@@ -45,34 +41,27 @@ public class ServicoController {
         if (result.hasErrors()) {
             return "admin/servico/form";
         }
-        var servico = mapper.toModel(form);
-        repository.save(servico);
+        service.cadastrar(form);
         return "redirect:/admin/servicos";
     }
 
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
         var modelAndView = new ModelAndView("admin/servico/form");
-        
-        var servico = repository.getById(id);
-        var form = mapper.toForm(servico);
-        
-        modelAndView.addObject("form", form);
+        modelAndView.addObject("form", service.buscarPorId(id));
         return modelAndView;
     }
 
     @PostMapping("/{id}/editar")
     public String editar(@PathVariable Long id, @Valid @ModelAttribute("form") ServicoForm form, BindingResult result) {
         if (result.hasErrors()) return "admin/servico/form";
-        var servico = mapper.toModel(form);
-        servico.setId(id);
-        repository.save(servico);
+        service.editar(form, id);
         return "redirect:/admin/servicos";
     }
 
     @GetMapping("/{id}/excluir")
     public String excluir(@PathVariable Long id) {
-        repository.deleteById(id);
+        service.excluirPorId(id);
         return "redirect:/admin/servicos";
     }
 

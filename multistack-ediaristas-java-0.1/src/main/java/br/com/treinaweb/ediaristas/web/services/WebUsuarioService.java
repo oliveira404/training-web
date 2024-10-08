@@ -3,10 +3,10 @@ package br.com.treinaweb.ediaristas.web.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.FieldError;
-
 import java.util.List;
 import br.com.treinaweb.ediaristas.core.enums.TipoUsuario;
 import br.com.treinaweb.ediaristas.core.exceptions.SenhasNaoConferemException;
+import br.com.treinaweb.ediaristas.core.exceptions.UsuarioJaCadastradoException;
 import br.com.treinaweb.ediaristas.core.exceptions.UsuarioNaoEncontradoException;
 import br.com.treinaweb.ediaristas.core.models.Usuario;
 import br.com.treinaweb.ediaristas.core.repositories.UsuarioRepository;
@@ -35,9 +35,9 @@ public class WebUsuarioService {
             var fieldError = new FieldError(form.getClass().getName(), "confirmacaoSenha", form.getConfirmacaoSenha(), false, null, null, msg);
             throw new SenhasNaoConferemException(msg, fieldError);
         }
-
         var model = mapper.toModel(form);
         model.setTipoUsuario(TipoUsuario.ADMIN);
+        validarCamposUnicos(model);
         return repository.save(model);
     }
 
@@ -57,11 +57,23 @@ public class WebUsuarioService {
         model.setId(usuario.getId());
         model.setSenha(usuario.getSenha());
         model.setTipoUsuario(usuario.getTipoUsuario());
+        validarCamposUnicos(model);
         return repository.save(model);
     }
 
     public void excluirPorId(Long id) {
         var usuario = buscarPorId(id);
         repository.delete(usuario);
+    }
+
+    private void validarCamposUnicos(Usuario usuario) {
+        repository.findByEmail(usuario.getEmail()).ifPresent((usuarioEncontrado) -> {
+            if (!usuarioEncontrado.equals(usuario)) {
+                var msg = "Já existe um usuário cadastrado com esse e-mail!";
+                var fieldError = new FieldError(usuario.getClass().getName(), "email", usuario.getEmail(), false, null, null, msg);
+                throw new UsuarioJaCadastradoException(msg, fieldError);
+            }
+        });
+
     }
 }

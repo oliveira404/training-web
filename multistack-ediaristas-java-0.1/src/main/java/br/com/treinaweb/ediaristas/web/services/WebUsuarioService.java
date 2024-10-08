@@ -1,6 +1,7 @@
 package br.com.treinaweb.ediaristas.web.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.FieldError;
 import java.util.List;
@@ -23,6 +24,9 @@ public class WebUsuarioService {
     @Autowired
     private WebUsuarioMapper mapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public List<Usuario> buscarTodos() {
         return repository.findAll();
     }
@@ -37,6 +41,9 @@ public class WebUsuarioService {
             throw new SenhasNaoConferemException(msg, fieldError);
         }
         var model = mapper.toModel(form);
+       
+        var senhaHash = passwordEncoder.encode(model.getSenha());
+        model.setSenha(senhaHash);
         model.setTipoUsuario(TipoUsuario.ADMIN);
         validarCamposUnicos(model);
         return repository.save(model);

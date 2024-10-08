@@ -16,7 +16,7 @@ import br.com.treinaweb.ediaristas.web.mappers.WebUsuarioMapper;
 
 @Service
 public class WebUsuarioService {
-    
+
     @Autowired
     private UsuarioRepository repository;
 
@@ -32,7 +32,8 @@ public class WebUsuarioService {
         var confirmacaoSenha = form.getConfirmacaoSenha();
         if (!senha.equals(confirmacaoSenha)) {
             var msg = "Os dois campos de senha não conferem";
-            var fieldError = new FieldError(form.getClass().getName(), "confirmacaoSenha", form.getConfirmacaoSenha(), false, null, null, msg);
+            var fieldError = new FieldError(form.getClass().getName(), "confirmacaoSenha", form.getConfirmacaoSenha(),
+                    false, null, null, msg);
             throw new SenhasNaoConferemException(msg, fieldError);
         }
         var model = mapper.toModel(form);
@@ -67,13 +68,10 @@ public class WebUsuarioService {
     }
 
     private void validarCamposUnicos(Usuario usuario) {
-        repository.findByEmail(usuario.getEmail()).ifPresent((usuarioEncontrado) -> {
-            if (!usuarioEncontrado.equals(usuario)) {
-                var msg = "Já existe um usuário cadastrado com esse e-mail!";
-                var fieldError = new FieldError(usuario.getClass().getName(), "email", usuario.getEmail(), false, null, null, msg);
-                throw new UsuarioJaCadastradoException(msg, fieldError);
-            }
-        });
-
+        if (repository.isEmailJaCadastrado(usuario.getEmail(), usuario.getId())) {
+            var msg = "Já existe um usuário cadastrado com esse e-mail!";
+            var fieldError = new FieldError(usuario.getClass().getName(), "email", usuario.getEmail(), false, null, null, msg);
+            throw new UsuarioJaCadastradoException(msg, fieldError);
+        }
     }
 }

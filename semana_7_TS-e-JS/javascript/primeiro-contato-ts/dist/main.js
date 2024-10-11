@@ -1,5 +1,5 @@
 "use strict";
-let minhaVar;
-minhaVar.toLowerCase();
-// or
-minhaVar.nome;
+let pessoa = {
+    nome: "carlos",
+    idade: 15
+};

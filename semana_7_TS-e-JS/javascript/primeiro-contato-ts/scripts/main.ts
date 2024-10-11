@@ -1,10 +1,12 @@
-let minhaVar: any;
-
-type MeuTipo = {
+interface Pessoa {
   nome: string;
+}
+
+interface Pessoa {
   idade: number;
 }
 
-(<string>minhaVar).toLowerCase();
-// or
-(minhaVar as MeuTipo).nome;
+let pessoa: Pessoa = {
+  nome: "carlos",
+  idade: 15
+}

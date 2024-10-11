@@ -1,3 +1,20 @@
+type Pessoa = {
+  nome: string;
+  idade: number;
+};
+
+var pessoa: Pessoa;
+
+pessoa = {
+  nome: "akita",
+  idade: 27
+}
+
+console.log(pessoa);
+
+
+
+
 let a: number;
 
 let qualquer: string | number;

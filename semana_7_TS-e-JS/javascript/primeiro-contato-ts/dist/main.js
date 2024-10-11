@@ -1,4 +1,10 @@
 "use strict";
+var pessoa;
+pessoa = {
+    nome: "akita",
+    idade: 27
+};
+console.log(pessoa);
 let a;
 let qualquer;
 let array = [];

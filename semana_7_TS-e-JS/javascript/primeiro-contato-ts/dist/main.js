@@ -1,5 +1,10 @@
 "use strict";
 let a;
+let qualquer;
+let array = [];
+qualquer = "cola";
+qualquer = 10;
+array.push("cobra");
 a = 5;
 console.log(5);
 var nome;

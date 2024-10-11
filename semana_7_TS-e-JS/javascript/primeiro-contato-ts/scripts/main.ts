@@ -1,12 +1,10 @@
-enum Direction {
-  ADMIN = 'ADMIN',
-  USER = 'USER'
+let minhaVar: any;
+
+type MeuTipo = {
+  nome: string;
+  idade: number;
 }
 
-function handleMovement(direction: Direction) {
-  if (direction === Direction.ADMIN) {
-    console.log(direction);
-  }
-}
-
-handleMovement(Direction.ADMIN);
+(<string>minhaVar).toLowerCase();
+// or
+(minhaVar as MeuTipo).nome;

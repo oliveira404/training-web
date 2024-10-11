@@ -1,12 +1,12 @@
-interface Pessoa {
-  nome: string;
+let minhaLista: number[] = [1, 2, 3];
+
+function pegaPrimeiroElemento<T>(lista: T[]): T {
+  return lista[0];
 }
 
-interface Pessoa {
-  idade: number;
-}
+pegaPrimeiroElemento<number>(minhaLista);
 
-let pessoa: Pessoa = {
-  nome: "carlos",
-  idade: 15
-}
+pegaPrimeiroElemento<string>(['a','b']);
+
+//nao precisa passar ele é esperto para descobrir sozinho
+pegaPrimeiroElemento(minhaLista);

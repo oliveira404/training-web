@@ -1,7 +1,17 @@
+import './MeuComponente.css'
+import {useState} from 'react';
 
-function Contador() {
-  const numero = 50;
-  return <div>Contador :{numero < 100 ? "SIM" : "NAO"}</div>
+function Contador(props) {
+  const [numero, setNumero] = useState(1)
+
+  console.log(state);
+  
+  return (
+    <div className="meu-estilo">Contador :{numero}
+    
+      <button onClick={() => setNumero(10)}>clique</button>
+    </div>
+  );
 }
 
 export default Contador;

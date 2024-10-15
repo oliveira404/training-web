@@ -5,8 +5,7 @@ import Contador from './components/MeuComponente.js'
 function App() {
   return (
     <div>
-      oi
-      <Contador />
+      <Contador/>
     </div>
   );
 }

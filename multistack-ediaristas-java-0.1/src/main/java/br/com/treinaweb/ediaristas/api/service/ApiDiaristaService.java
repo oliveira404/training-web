@@ -1,10 +1,12 @@
 package br.com.treinaweb.ediaristas.api.service;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import br.com.treinaweb.ediaristas.api.DTOs.responses.DiaristaLocalidadeResponse;
+import br.com.treinaweb.ediaristas.api.DTOs.responses.DiaristasLocalidadesPagedResponse;
 import br.com.treinaweb.ediaristas.api.mappers.ApiDiaristaMapper;
+import br.com.treinaweb.ediaristas.core.models.Usuario;
 import br.com.treinaweb.ediaristas.core.repositories.UsuarioRepository;
 import br.com.treinaweb.ediaristas.core.services.consultaendereco.adapters.EnderecoService;
 
@@ -20,11 +22,19 @@ public class ApiDiaristaService {
     @Autowired
     private EnderecoService enderecoService;
 
-    public List<DiaristaLocalidadeResponse> buscarDiaristasPorCep(String cep) {
+    public DiaristasLocalidadesPagedResponse buscarDiaristasPorCep(String cep) {
         var codigoIbge = enderecoService.buscarEnderecoPorCep(cep).getIbge();
-
-        return repository.findByCidadesAtendidasCodigoIbge(codigoIbge).stream().map(mapper::toDiaristaLocalidadeResponse)
-        .toList();
+        
+        //var sort = Sort.by(Direction.DESC, "reputacao");
+        var usuarioSort = Sort.sort(Usuario.class);
+        var sort = usuarioSort.by(Usuario::getReputacao).descending();
+        
+        var numeroPagina = 0;
+        var tamanhoPagina = 6;
+        var pageable = PageRequest.of(numeroPagina, tamanhoPagina, sort);
+        var resultado = repository.findByCidadesAtendidasCodigoIbge(codigoIbge, pageable);
+        var diaristas = resultado.getContent().stream().map(mapper::toDiaristaLocalidadeResponse).toList();
+        return new DiaristasLocalidadesPagedResponse(diaristas, tamanhoPagina, resultado.getTotalElements());
     }
     
 }

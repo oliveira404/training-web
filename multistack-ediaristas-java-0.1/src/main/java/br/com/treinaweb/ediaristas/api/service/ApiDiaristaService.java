@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import br.com.treinaweb.ediaristas.api.DTOs.responses.DiaristasLocalidadesPagedResponse;
-import br.com.treinaweb.ediaristas.api.DTOs.responses.DisponibilidadeResponse;
+
+import br.com.treinaweb.ediaristas.api.dtos.responses.DiaristasLocalidadesPagedResponse;
+import br.com.treinaweb.ediaristas.api.dtos.responses.DisponibilidadeResponse;
 import br.com.treinaweb.ediaristas.api.mappers.ApiDiaristaMapper;
 import br.com.treinaweb.ediaristas.core.models.Usuario;
 import br.com.treinaweb.ediaristas.core.repositories.UsuarioRepository;

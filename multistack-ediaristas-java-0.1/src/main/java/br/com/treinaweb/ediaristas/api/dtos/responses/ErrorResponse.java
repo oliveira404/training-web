@@ -1,4 +1,4 @@
-package br.com.treinaweb.ediaristas.api.DTOs.responses;
+package br.com.treinaweb.ediaristas.api.dtos.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

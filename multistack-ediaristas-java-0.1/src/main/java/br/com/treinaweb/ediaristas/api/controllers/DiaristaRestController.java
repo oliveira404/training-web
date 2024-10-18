@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.treinaweb.ediaristas.api.DTOs.responses.DiaristasLocalidadesPagedResponse;
-import br.com.treinaweb.ediaristas.api.DTOs.responses.DisponibilidadeResponse;
+import br.com.treinaweb.ediaristas.api.dtos.responses.DiaristasLocalidadesPagedResponse;
+import br.com.treinaweb.ediaristas.api.dtos.responses.DisponibilidadeResponse;
 import br.com.treinaweb.ediaristas.api.service.ApiDiaristaService;
 
 @RestController

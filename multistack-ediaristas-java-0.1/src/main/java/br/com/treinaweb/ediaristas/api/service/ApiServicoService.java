@@ -4,7 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import br.com.treinaweb.ediaristas.api.DTOs.responses.ServicoResponse;
+
+import br.com.treinaweb.ediaristas.api.dtos.responses.ServicoResponse;
 import br.com.treinaweb.ediaristas.api.mappers.ApiServicoMapper;
 import br.com.treinaweb.ediaristas.core.models.Servico;
 import br.com.treinaweb.ediaristas.core.repositories.ServicoRepository;

@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import br.com.treinaweb.ediaristas.api.DTOs.responses.ErrorResponse;
+
+import br.com.treinaweb.ediaristas.api.dtos.responses.ErrorResponse;
 import br.com.treinaweb.ediaristas.core.services.consultaendereco.exceptions.EnderecoServiceException;
 
 @RestControllerAdvice(annotations = RestController.class)

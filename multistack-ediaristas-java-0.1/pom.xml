@@ -109,7 +109,7 @@
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
     	<groupId>io.springfox</groupId>
     	<artifactId>springfox-swagger2</artifactId>
     	<version>3.0.0</version>
@@ -125,7 +125,57 @@
     	<groupId>org.springdoc</groupId>
     	<artifactId>springdoc-openapi-ui</artifactId>
     	<version>1.8.0</version>
+		</dependency>-->
+
+	<!--novos a baixo-->
+
+	  <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>1.8.0</version>
+   	</dependency>
+
+	  <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-webmvc-core</artifactId>
+      <version>1.8.0</version>
+   	</dependency>
+
+		<dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-webflux-ui</artifactId>
+      <version>1.8.0</version>
+   </dependency>
+
+		<dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-hateoas</artifactId>
+      <version>1.8.0</version>
+   </dependency>
+
+	    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-data-rest</artifactId>
+      <version>1.8.0</version>
+   </dependency>
+
+	    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-security</artifactId>
+      <version>1.8.0</version>
+   </dependency>
+
+	  <!--<dependency>
+	  	<groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>2.6.0</version>
 		</dependency>
+
+		<dependency>
+	  	<groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
+      <version>2.6.0</version>
+		</dependency>-->
 	</dependencies>
 
 	<build>

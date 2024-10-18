@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.treinaweb.ediaristas.api.DTOs.responses.DiaristasLocalidadesPagedResponse;
+import br.com.treinaweb.ediaristas.api.DTOs.responses.DisponibilidadeResponse;
 import br.com.treinaweb.ediaristas.api.service.ApiDiaristaService;
 
 @RestController
@@ -18,5 +19,10 @@ public class DiaristaRestController {
     @GetMapping("/localidades")
     public DiaristasLocalidadesPagedResponse buscarDiaristasPorCep(@RequestParam(required = false) String cep) {
         return service.buscarDiaristasPorCep(cep);
+    }
+
+    @GetMapping("/disponibilidade")
+    public DisponibilidadeResponse verificarDisponibilidadePorCep(@RequestParam(required = false) String cep) {
+        return service.verificarDisponibilidadePorCep(cep);
     }
 }

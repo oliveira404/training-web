@@ -3,9 +3,8 @@ package br.com.treinaweb.ediaristas.api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import br.com.treinaweb.ediaristas.api.dtos.requests.UsuarioRequest;
-import br.com.treinaweb.ediaristas.api.dtos.responses.UsuarioResonse;
+import br.com.treinaweb.ediaristas.api.dtos.responses.UsuarioResponse;
 import br.com.treinaweb.ediaristas.api.mappers.ApiUsuarioMapper;
 import br.com.treinaweb.ediaristas.core.repositories.UsuarioRepository;
 
@@ -21,9 +20,9 @@ public class ApiUsuarioService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UsuarioResonse cadastrar(UsuarioRequest request) {
+    public UsuarioResponse cadastrar(UsuarioRequest request) {
         var usuarioParaCadastrar = mapper.toModel(request);
-        
+
         var senhaEncriptada = passwordEncoder.encode(usuarioParaCadastrar.getSenha());
         usuarioParaCadastrar.setSenha(senhaEncriptada);
 

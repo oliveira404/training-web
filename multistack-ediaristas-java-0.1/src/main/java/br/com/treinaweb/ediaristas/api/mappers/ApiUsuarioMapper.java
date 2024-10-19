@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import br.com.treinaweb.ediaristas.api.dtos.requests.UsuarioRequest;
-import br.com.treinaweb.ediaristas.api.dtos.responses.UsuarioResonse;
+import br.com.treinaweb.ediaristas.api.dtos.responses.UsuarioResponse;
 import br.com.treinaweb.ediaristas.core.enums.TipoUsuario;
 import br.com.treinaweb.ediaristas.core.models.Usuario;
 import java.util.stream.Stream;
@@ -18,12 +18,12 @@ public interface ApiUsuarioMapper {
     Usuario toModel(UsuarioRequest request);
 
     @Mapping(target = "tipoUsuario", source = "tipoUsuario.id")
-    UsuarioResonse toResponse(Usuario model);
-   
+    UsuarioResponse toResponse(Usuario model);
+
     default TipoUsuario integerToTipoUsuario(Integer valor) {
         return Stream.of(TipoUsuario.values())
-        .filter(tipoUsuario -> tipoUsuario.getId().equals(valor))
-        .findFirst()
-        .orElseThrow(() -> new IllegalArgumentException("Tipo Usuário Inválido!"));
-    } 
+                .filter(tipoUsuario -> tipoUsuario.getId().equals(valor))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Tipo Usuário Inválido!"));
+    }
 }

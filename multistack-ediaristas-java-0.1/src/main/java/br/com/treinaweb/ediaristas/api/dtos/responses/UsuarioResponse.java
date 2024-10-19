@@ -4,11 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsuarioResonse {
+@JsonNaming(SnakeCaseStrategy.class)
+public class UsuarioResponse {
 
     private Long id;
     private String nomeCompleto;
